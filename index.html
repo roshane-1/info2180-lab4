@@ -3,15 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <title>Superhero Search</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="phpstyles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Superhero Search</h1>
-        <button id="searchButton">Search</button>
+        <div class="headertext">
+            <h1>AVENGERS CHARACTER SEARCH</h1>
+        </div>
+        <div class="section">
+            <h2>Search by Full Name or Alias</h2>
+            <input type="text" id="searchHero" placeholder="e.g. Captain America or Steve Rogers">
+            <button id="searchButton">Search</button>
+
+            <div id="result">
+                
+            </div>
+            <script src="app.js"></script>
+        </div>
     </div>
-    <script src="app.js"></script>
 </body>
 </html>

@@ -63,10 +63,30 @@ $superheroes = [
   ], 
 ];
 
-?>
+echo '<h1> Results</h1>'; 
+echo '<hr>'; 
+$searchTerm = isset($_GET['search']) ? $_GET['search'] : '';
 
-<ul>
-<?php foreach ($superheroes as $superhero): ?>
-  <li><?= $superhero['alias']; ?></li>
-<?php endforeach; ?>
-</ul>
+if ($searchTerm) {
+    $filteredSuperheroes = array_filter($superheroes, function($superhero) use ($searchTerm) {
+        return stripos($superhero['alias'], $searchTerm) !== false || 
+               stripos($superhero['name'], $searchTerm) !== false;
+    });
+
+    if (count($filteredSuperheroes) > 0) {
+        foreach ($filteredSuperheroes as $superhero) {
+            echo '<h3>' . htmlspecialchars($superhero['alias']) . '</h3>'; 
+            echo '<h4>A.K.A. ' . htmlspecialchars($superhero['name']) . '</h4>';
+            echo '<p>' . htmlspecialchars($superhero['biography']) . '</p>';
+        }
+    } else {
+        echo '<p style = "color:red";>SUPERHERO NOT FOUND</p>';
+    }
+} else {
+    echo '<ul>';
+    foreach ($superheroes as $superhero) {
+        echo '<li>' . htmlspecialchars($superhero['alias']) . '</li>';
+    }
+    echo '</ul>';
+}
+?>
